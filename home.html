@@ -1,0 +1,362 @@
+<html><head><base href=".">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - DEVINGO NG LTD</title>
+  <style>
+    :root {
+      --primary: #2B5F1E;
+      --secondary: #F7B538;
+      --dark: #1a1a1a;
+      --light: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 4px;
+      top: 100%;
+      left: 0;
+    }
+
+    .dropdown-content a {
+      color: var(--dark);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+      color: var(--primary);
+    }
+
+    .show {
+      display: block;
+    }
+
+    .dropbtn {
+      background: none;
+      color: var(--dark);
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dropbtn:hover {
+      color: var(--primary);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .mobile-menu.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      transition: background 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      background: #f5f5f5;
+      color: var(--primary);
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1588959570943-a08333e7c5aa');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--light);
+      padding: 1rem;
+      margin-top: 0;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--dark);
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+
+    .catalog {
+      padding: 80px 20px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .catalog h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-info h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-info p {
+      color: var(--dark);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .product-price {
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .inquiry-btn {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--dark);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    .inquiry-btn:hover {
+      background: #e5a632;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <a href="https://devingo.ng" class="logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+      </svg>
+      DEVINGO NG LTD
+    </a>
+    <div class="nav-links">
+      <button class="dropbtn">
+        Menu
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+      <div class="dropdown-content">
+        <a href="products.html">Products</a>
+        <a href="aboutus.html">About</a>
+        <a href="services (2).html">Services</a>
+        <a href="contactus.html">Contact</a>
+      </div>
+    </div>
+    <div class="menu-toggle">&#x2630;</div>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="products.html">Products</a>
+    <a href="aboutus.html">About</a>
+    <a href="services (2).html">Services</a>
+    <a href="contactus.html">Contact</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to DEVINGO NG LTD</h1>
+      <p>Your trusted partner in agricultural machinery and equipment</p>
+      <a href="products.html" class="cta-button">Explore Our Products</a>
+    </div>
+  </section>
+
+  <section class="catalog">
+    <h2>Featured Farm Machinery</h2>
+    
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="images/john.jpg" alt="John Deere Tractor" class="product-image">
+        <div class="product-info">
+          <h3>John Deere 5E Series Tractor</h3>
+          <p>Versatile utility tractor perfect for small to medium farms. Features a powerful 85HP engine and comfortable cab.</p>
+          <div class="product-price">$125,000 (₦15,000,000)</div>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <img src="images/bulldozer d6.jpg" alt="Caterpillar Bulldozer" class="product-image">
+        <div class="product-info">
+          <h3>CAT D6 Bulldozer</h3>
+          <p>Heavy-duty bulldozer with advanced grade control technology. Ideal for land clearing and construction.</p>
+          <div class="product-price">$195,000 (₦146,111,500)</div>
+          <a href="contactus.html" class="inquiry-btn"> Contact Us</a>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <img src="images/combine.jpg" alt="Combine Harvester" class="product-image">
+        <div class="product-info">
+          <h3>New Holland CR Series Combine</h3>
+          <p>High-capacity combine harvester with twin rotor technology. Perfect for large-scale grain operations.</p>
+          <div class="product-price">$280,000 (₦307,852,000)</div>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>document.addEventListener('DOMContentLoaded', function () {
+  const dropbtn = document.querySelector('.dropbtn');
+  const dropdownContent = document.querySelector('.dropdown-content');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  dropbtn.addEventListener('click', function () {
+    dropdownContent.classList.toggle('show');
+  });
+  window.addEventListener('click', function (e) {
+    if (!e.target.matches('.dropbtn') && !e.target.parentNode.matches('.dropbtn')) {
+      if (dropdownContent.classList.contains('show')) {
+        dropdownContent.classList.remove('show');
+      }
+    }
+  });
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+  });
+});</script>
+</body>
+</html>

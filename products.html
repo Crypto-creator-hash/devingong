@@ -1,0 +1,454 @@
+<html><head><base href="."><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products - DEVINGO NG LTD</title>
+<style>
+:root {
+  --primary: #2B5F1E;
+  --secondary: #F7B538;
+  --dark: #1a1a1a;
+  --light: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: var(--light);
+  color: var(--dark);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-links {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content a {
+  color: var(--dark);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  color: var(--primary);
+}
+
+.show {
+  display: block;
+}
+
+.dropbtn {
+  background: none;
+  color: var(--dark);
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropbtn:hover {
+  color: var(--primary);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-menu.active {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: background 0.3s;
+}
+
+.mobile-menu a:hover {
+  background: #f5f5f5;
+  color: var(--primary);
+}
+
+.products-section {
+  margin-top: 100px;
+  padding: 2rem;
+}
+
+.section-title {
+  text-align: center;
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 1.5rem;
+}
+
+.product-title {
+  font-size: 1.25rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.product-description {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.product-price {
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.inquiry-btn {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background 0.3s;
+}
+
+.inquiry-btn:hover {
+  background: #1a4614;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <a href="home.html" class="logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+      </svg>
+      DEVINGO NG LTD
+    </a>
+    <div class="nav-links">
+      <button class="dropbtn">
+        Menu
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+      <div class="dropdown-content">
+        <a href="products.html">Products</a>
+        <a href="aboutus.html">About</a>
+        <a href="services (2).html">Services</a>
+        <a href="contactus.html">Contact</a>
+        <a href="home.html">Home</a>
+      </div>
+    </div>
+    <div class="menu-toggle">&#x2630;</div>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="home.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="aboutus.html">About</a>
+    <a href="services (2).html">Services</a>
+    <a href="contactus.html">Contact</a>
+  </div>
+
+  <section class="products-section">
+    <h1 class="section-title">Our Products</h1>
+    <p class="section-subtitle">Explore our comprehensive range of high-quality farm machinery and equipment</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="images/tractor.jpg" alt="CAT Bulldozer" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Agricultural Tractor</h3>
+          <p class="product-description">Heavy-duty farming tractor with advanced features for maximum efficiency</p>
+          <p class="product-price">From &#x24;125,000</p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div> 
+
+      <div class="product-card">
+        <img src="images/bulldozer d6.jpg" alt="CAT Bulldozer" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">CAT D6 Bulldozer</h3>
+          <p class="product-description">Powerful bulldozer perfect for land clearing and construction</p>
+          <p class="product-price">&#x24;85,000</p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/combine.jpg" alt="Combine Harvester" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">New Holland Combine</h3>
+          <p class="product-description">State-of-the-art combine harvester for efficient crop collection</p>
+          <p class="product-price">&#x24;115,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/kubota.jpg" alt="Excavator" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Kubota Excavator</h3>
+          <p class="product-description">Versatile excavator for various agricultural and construction needs</p>
+          <p class="product-price">&#x24;95,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/sprayer.jpg" alt="Sprayer" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Agricultural Sprayer</h3>
+          <p class="product-description">High-capacity sprayer for effective crop treatment</p>
+          <p class="product-price">&#x24;62,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/planter.jpg" alt="Planter" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Precision Planter</h3>
+          <p class="product-description">Advanced planting system for optimal seed placement</p>
+          <p class="product-price">&#x24;71,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/grain.jpeg" alt="Grain Dryer" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Industrial Grain Dryer</h3>
+          <p class="product-description">High-capacity grain drying system for commercial farming operations</p>
+          <p class="product-price">&#x24;65,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/baler.jpeg" alt="Silage Baler" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Round Baler</h3>
+          <p class="product-description">Premium baling equipment for hay and silage production</p>
+          <p class="product-price">&#x24;45,000</p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/potato.jpg" alt="Potato Harvester" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Potato Harvester</h3>
+          <p class="product-description">Specialized equipment for efficient potato harvesting</p>
+          <p class="product-price">&#x24;90,000</p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/rice.jpg" alt="Rice Transplanter" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Rice Transplanter</h3>
+          <p class="product-description">Automated rice planting machine for paddy fields</p>
+          <p class="product-price">&#x24;35,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/drill.jpg" alt="Seed Drill" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Seed Drill</h3>
+          <p class="product-description">Advanced seeding equipment for precise planting</p>
+          <p class="product-price">&#x24;42,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/rotavator.webp" alt="Rotavator" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Heavy Duty Rotavator</h3>
+          <p class="product-description">Soil cultivation equipment for field preparation</p>
+          <p class="product-price">&#x24;28,000</p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/auger.avif" alt="Grain Auger" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Grain Auger</h3>
+          <p class="product-description">Efficient grain transfer and loading system</p>
+          <p class="product-price">&#x24;15,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/fert.jpeg" alt="Fertilizer Spreader" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Fertilizer Spreader</h3>
+          <p class="product-description">High-precision fertilizer application equipment</p>
+          <p class="product-price">&#x24;22,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/manure.jpg" alt="Manure Spreader" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">Manure Spreader</h3>
+          <p class="product-description">Large capacity organic fertilizer spreader</p>
+          <p class="product-price">&#x24;32,000 </p>
+          <a href="contactus.html" class="inquiry-btn">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+  const dropbtn = document.querySelector('.dropbtn');
+  const dropdownContent = document.querySelector('.dropdown-content');
+  dropbtn.addEventListener('click', function () {
+    dropdownContent.classList.toggle('show');
+  });
+  window.addEventListener('click', function (e) {
+    if (!e.target.matches('.dropbtn') && !e.target.parentNode.matches('.dropbtn')) {
+      if (dropdownContent.classList.contains('show')) {
+        dropdownContent.classList.remove('show');
+      }
+    }
+  });
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease-out';
+    observer.observe(card);
+  });
+});</script>
+</body></html>
